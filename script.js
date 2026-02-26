@@ -165,24 +165,28 @@ function showRejected() {
 }
 
 function checkEmpty() {
-    const allSection = document.getElementById("all-card");
-    const filterSection = document.getElementById("filter-section");
+
     const emptyMessage = document.getElementById("empty-message");
 
-    // যদি filter section visible থাকে
-    if (!filterSection.classList.contains("hidden")) {
-        if (filterSection.children.length === 0) {
-            emptyMessage.classList.remove("hidden");
+    
+    if (!allCardSection.classList.contains("hidden")) {
+
+        let cards = allCardSection.querySelectorAll(".w-\\[80\\%\\]")
+
+        if (cards.length === 0) {
+            emptyMessage.classList.remove("hidden")
         } else {
-            emptyMessage.classList.add("hidden");
+            emptyMessage.classList.add("hidden")
         }
-    } 
-    // যদি all section visible থাকে
+    }
+
+  
     else {
-        if (allSection.children.length === 0) {
-            emptyMessage.classList.remove("hidden");
+
+        if (filterSection.children.length === 0) {
+            emptyMessage.classList.remove("hidden")
         } else {
-            emptyMessage.classList.add("hidden");
+            emptyMessage.classList.add("hidden")
         }
     }
 }
