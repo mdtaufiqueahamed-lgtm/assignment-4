@@ -53,6 +53,8 @@ if (id === "interview-button") {
     if (id === "rejected-button") {
         showRejected()
     }
+
+    checkEmpty()
 }
 
 
@@ -98,6 +100,7 @@ main.addEventListener("click", function (event) {
         interviewList = interviewList.filter(item => item.heading !== heading)
 
         calculateCount()
+        checkEmpty()
     }
 
     
@@ -109,6 +112,7 @@ main.addEventListener("click", function (event) {
         rejectedList = rejectedList.filter(item => item.heading !== heading)
 
         calculateCount()
+        checkEmpty()
     }
 
 })
@@ -134,6 +138,7 @@ function showInterview() {
 
         filterSection.appendChild(div)
     })
+    checkEmpty()
 }
 
 
@@ -160,16 +165,25 @@ function showRejected() {
 }
 
 function checkEmpty() {
-    
-    const allCards = allCardSection.querySelectorAll(".w-\\[80\\%\\]")
-    
-    const filterCards = filterSection.querySelectorAll(".w-\\[80\\%\\]")
+    const allSection = document.getElementById("all-card");
+    const filterSection = document.getElementById("filter-section");
+    const emptyMessage = document.getElementById("empty-message");
 
-    if (allCards.length === 0 && filterCards.length === 0) {
-        emptyMessage.classList.remove("hidden")
-    } else {
-        emptyMessage.classList.add("hidden")
+    // যদি filter section visible থাকে
+    if (!filterSection.classList.contains("hidden")) {
+        if (filterSection.children.length === 0) {
+            emptyMessage.classList.remove("hidden");
+        } else {
+            emptyMessage.classList.add("hidden");
+        }
+    } 
+    // যদি all section visible থাকে
+    else {
+        if (allSection.children.length === 0) {
+            emptyMessage.classList.remove("hidden");
+        } else {
+            emptyMessage.classList.add("hidden");
+        }
     }
 }
 
-checkEmpty()
